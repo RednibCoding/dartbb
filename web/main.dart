@@ -28,8 +28,8 @@ void mainLoop() {
 
   // UiBegin/UiEnd can be called at any point as long as it is called after the Graphics command
   UiBegin();
-  DrawText("FPS: ${FpsString()}", 10, 20);
-  DrawText("MS: ${MillisecsString()}", 100, 100);
+  DrawText('FPS: ${FpsString()}', 10, 20);
+  DrawText('MS: ${MillisecsString()}', 100, 100);
   UiEnd();
 
   if (MouseHit(0)) {
@@ -40,8 +40,8 @@ void mainLoop() {
     }
   }
 
-  DrawText("FPS: ${FpsString()}", 20, 40);
-  DrawText("MS: ${MillisecsString()}", 110, 120);
+  DrawText('FPS: ${FpsString()}', 20, 40);
+  DrawText('MS: ${MillisecsString()}', 110, 120);
   if (IsMouseHidden()) {
     DrawText(
         'mxs: ${MouseXSpeed().toString()} | mys: ${MouseYSpeed().toString()}',
