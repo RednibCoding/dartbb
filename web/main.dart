@@ -32,6 +32,9 @@ void mainLoop() {
   DrawText('MS: ${MillisecsString()}', 100, 100);
   UiEnd();
 
+  DrawText('FPS: ${FpsString()}', 20, 40);
+  DrawText('MS: ${MillisecsString()}', 110, 120);
+
   if (MouseHit(0)) {
     if (IsMouseHidden()) {
       ShowMouse();
@@ -40,8 +43,6 @@ void mainLoop() {
     }
   }
 
-  DrawText('FPS: ${FpsString()}', 20, 40);
-  DrawText('MS: ${MillisecsString()}', 110, 120);
   if (IsMouseHidden()) {
     DrawText(
         'mxs: ${MouseXSpeed().toString()} | mys: ${MouseYSpeed().toString()}',
