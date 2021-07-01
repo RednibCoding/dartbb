@@ -8,7 +8,10 @@ void main() async {
   // Loading stuff
   image = await LoadImage('media/darticon.png');
   font = LoadFont('media/mandatoryplaything.ttf');
+
+  SetUiCanvasFocused(true);
   SetFont(font);
+  SetUiCanvasFocused(false);
 
   // Begin the render loop and therefore the given "mainLoop" (this must be called after all resources have been loaded)
   Begin();
@@ -19,6 +22,8 @@ late Font font;
 
 void mainLoop() {
   Cls();
+  SetUiCanvasFocused(true);
   DrawText(FpsString(), 10, 20);
+  SetUiCanvasFocused(false);
   DrawImage(image, 50, 50);
 }

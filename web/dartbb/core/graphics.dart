@@ -39,7 +39,7 @@ class Graphics {
     _uiLayer.context2D.setFillColorRgb(0, 0, 0, 0);
     _uiLayer.context2D.setTransform(1, 0, 0, 1, 0, 0);
     _uiLayer.context2D
-        .fillRect(0, 0, _uiLayer.width as num, _uiLayer.height as num);
+        .clearRect(0, 0, _uiLayer.width as num, _uiLayer.height as num);
   }
 
   void clsColor(int r, int g, int b, [double a = 1.0]) {
@@ -80,7 +80,6 @@ class Graphics {
     } else {
       _gameLayer.context2D.font = fontData;
     }
-    print(fontData);
   }
 
   Future<Image> loadImage(String path) async {
