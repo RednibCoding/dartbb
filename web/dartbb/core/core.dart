@@ -3,6 +3,7 @@ library dartbb.core;
 import 'dart:html';
 import '../time.dart';
 import 'graphics.dart';
+import 'mouse.dart';
 
 class Core {
   static late final Core dartbbCtx;
@@ -14,6 +15,7 @@ class Core {
   int _fpsCounter = 0;
   late Function _mainLoop;
   late Graphics graphics;
+  late Mouse mouse;
 
   int get fps => _fps;
   int get millisecs => _time.milliSecs();
@@ -25,6 +27,7 @@ class Core {
   }) {
     _mainLoop = mainLoop;
     graphics = Graphics(width, height);
+    mouse = Mouse(this);
   }
 
   void run() async {

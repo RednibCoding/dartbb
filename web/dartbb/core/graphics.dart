@@ -89,9 +89,9 @@ class Graphics {
 
   void drawImage(Image img, num x, num y) {
     if (_isUiCanvasFocused) {
-      _uiLayer.context2D.drawImage(img.data, x, y);
+      _uiLayer.context2D.drawImage(img.element, x, y);
     } else {
-      _gameLayer.context2D.drawImage(img.data, x, y);
+      _gameLayer.context2D.drawImage(img.element, x, y);
     }
   }
 

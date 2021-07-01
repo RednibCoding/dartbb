@@ -23,6 +23,9 @@ void main() async {
 late Image image;
 late Font font;
 
+int x = 20;
+int y = -20;
+
 void mainLoop() {
   Cls();
 
@@ -32,7 +35,15 @@ void mainLoop() {
   DrawText(MillisecsString(), 100, 100);
   UiEnd();
 
+  if (MouseHit(0)) {
+    var tmp = x;
+    x = y;
+    y = tmp;
+  }
+
   DrawText(FpsString(), 20, 40);
   DrawText(MillisecsString(), 110, 120);
+  DrawText('${MouseX().toString()} | ${MouseY().toString()}', MouseX() + x,
+      MouseY() + y);
   DrawImage(image, 50, 50);
 }
