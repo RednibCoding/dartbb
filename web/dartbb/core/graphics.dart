@@ -1,6 +1,7 @@
 library dartbb.graphics;
 
 import 'dart:html';
+import '../font.dart';
 import '../image.dart';
 import '../color.dart';
 
@@ -55,6 +56,33 @@ class Graphics {
     _color.a = a;
   }
 
+  Font loadFont(String path) {
+    var name = (path.split('/').last).split('.').first;
+    return Font(path, name);
+  }
+
+  void setFont(Font font,
+      [int size = 16, bool bold = false, bool italic = false, int weight = 0]) {
+    var data = '';
+    if (bold) {
+      if (weight > 0) {
+        data += weight.toString();
+      } else {
+        data += 'bold ';
+      }
+    }
+    if (italic) {
+      data += 'oblique ';
+    }
+    var fontData = '$data${size}px ${font.name}';
+    if (_isUiCanvasFocused) {
+      _uiLayer.context2D.font = fontData;
+    } else {
+      _gameLayer.context2D.font = fontData;
+    }
+    print(fontData);
+  }
+
   Future<Image> loadImage(String path) async {
     var image = ImageElement(src: path);
     return await image.onLoad.first.then((value) => Image(image));
@@ -70,7 +98,6 @@ class Graphics {
 
   void drawText(String text, num x, num y) {
     if (_isUiCanvasFocused) {
-      //Core.dartbbCtx.uiLayer.context2D.font = "Arial";
       _uiLayer.context2D
           .setFillColorRgb(_color.r, _color.g, _color.b, _color.a);
       _uiLayer.context2D.fillText(text, x, y);

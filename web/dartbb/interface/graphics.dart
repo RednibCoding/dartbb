@@ -20,6 +20,15 @@ void SetColor(int r, int g, int b, [double a = 1.0]) {
   Core.dartbbCtx.graphics.setColor(r, g, b, a);
 }
 
+Font LoadFont(String path) {
+  return Core.dartbbCtx.graphics.loadFont(path);
+}
+
+void SetFont(Font font,
+    [int size = 16, bool bold = false, bool italic = false, int weight = 0]) {
+  Core.dartbbCtx.graphics.setFont(font, size, bold, italic, weight);
+}
+
 int GraphicsWidth() {
   return Core.dartbbCtx.graphics.graphicsWidth;
 }

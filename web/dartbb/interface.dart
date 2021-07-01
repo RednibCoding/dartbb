@@ -1,6 +1,7 @@
 library dartbb.interface;
 
 import 'core/core.dart';
+import 'font.dart';
 import 'image.dart';
 
 part 'interface/graphics.dart';
