@@ -1,14 +1,8 @@
 library dartbb.core;
 
 import 'dart:html';
-import '../color.dart';
-import '../image.dart';
 import '../time.dart';
-
-part 'core_graphics.dart';
-part 'core_image.dart';
-part 'core_text.dart';
-part 'core_misc.dart';
+import 'graphics.dart';
 
 class Core {
   static late final Core dartbbCtx;
@@ -18,14 +12,10 @@ class Core {
   int _elapsedTime = 0;
   int _fps = 0;
   int _fpsCounter = 0;
-  late CanvasElement _gameLayer;
-  late CanvasElement _uiLayer;
   late Function _mainLoop;
-  late Color _clsColor;
-  late Color _color;
-  // is used on draw operations to determine target canvas (game canvas / ui canvas)
-  // ignore: prefer_final_fields
-  bool _isUiCanvasFocused = false;
+  late Graphics graphics;
+
+  int get fps => _fps;
 
   Core({
     required int width,
@@ -33,26 +23,10 @@ class Core {
     required Function mainLoop,
   }) {
     _mainLoop = mainLoop;
-    _clsColor = Color(0, 0, 0);
-    _color = Color(255, 255, 255);
-    _gameLayer = _createCanvasElement('canvas', width, height);
-    _uiLayer = _createCanvasElement('ui', width, height);
-    _run();
+    graphics = Graphics(width, height);
   }
 
-  CanvasElement _createCanvasElement(String id, int width, int height,
-      [bool hidden = false]) {
-    // #output is the default div produced by dart web
-    var output = querySelector('#output');
-    var canvas = CanvasElement(width: width, height: height);
-    canvas.setAttribute('id', id);
-    canvas.setAttribute('style', 'position:absolute; top:0; left:0');
-    if (hidden) canvas.setAttribute('style', 'display:none');
-    output?.children.add(canvas);
-    return canvas;
-  }
-
-  void _run() async {
+  void run() async {
     _render(await window.animationFrame);
     _fpsCounter++;
     var ms = _time.milliSecs();
@@ -71,16 +45,16 @@ class Core {
       _mainLoop();
       _postRender();
     }
-    _run();
+    run();
   }
 
   void _preRender() {
-    _gameLayer.context2D.save();
-    _uiLayer.context2D.save();
+    graphics.gameLayer.context2D.save();
+    graphics.uiLayer.context2D.save();
   }
 
   void _postRender() {
-    _gameLayer.context2D.restore();
-    _uiLayer.context2D.restore();
+    graphics.gameLayer.context2D.restore();
+    graphics.uiLayer.context2D.restore();
   }
 }
