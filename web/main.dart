@@ -1,5 +1,6 @@
 import 'dartbb/dartbb.dart';
 import 'dartbb/font.dart';
+import 'dartbb/image.dart';
 
 void main() async {
   // Innitialize graphics context (this must be called before any other dartbb function)

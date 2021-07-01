@@ -1,3 +1,5 @@
+library dartbb.font;
+
 import 'dart:html';
 
 class Font {
