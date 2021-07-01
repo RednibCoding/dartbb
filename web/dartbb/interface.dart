@@ -10,3 +10,4 @@ part 'interface/image.dart';
 part 'interface/text.dart';
 part 'interface/mouse.dart';
 part 'interface/keyboard.dart';
+part 'interface/font.dart';
