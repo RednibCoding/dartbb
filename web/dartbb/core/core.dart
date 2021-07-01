@@ -16,6 +16,7 @@ class Core {
   late Graphics graphics;
 
   int get fps => _fps;
+  int get millisecs => _time.milliSecs();
 
   Core({
     required int width,

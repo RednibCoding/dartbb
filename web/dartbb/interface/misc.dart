@@ -7,3 +7,11 @@ int Fps() {
 String FpsString() {
   return Core.dartbbCtx.fps.toString();
 }
+
+int Millisecs() {
+  return Core.dartbbCtx.millisecs;
+}
+
+String MillisecsString() {
+  return Core.dartbbCtx.millisecs.toString();
+}

@@ -29,7 +29,10 @@ void mainLoop() {
   // UiBegin/UiEnd can be called at any point as long as it is called after the Graphics command
   UiBegin();
   DrawText(FpsString(), 10, 20);
+  DrawText(MillisecsString(), 100, 100);
   UiEnd();
 
+  DrawText(FpsString(), 20, 40);
+  DrawText(MillisecsString(), 110, 120);
   DrawImage(image, 50, 50);
 }
