@@ -8,6 +8,7 @@ class Mouse {
   num xSpeed = 0;
   num ySpeed = 0;
   num zSpeed = 0;
+  bool isHidden = false;
   List<bool> keys = [];
   late Core ctx;
 
@@ -55,6 +56,14 @@ class Mouse {
     // todo
   }
 
+  void speedX() {
+    // todo
+  }
+
+  void speedY() {
+    // todo
+  }
+
   bool down(int key) {
     return keys[key];
   }
@@ -69,5 +78,15 @@ class Mouse {
     keys.forEach((k) {
       k = false;
     });
+  }
+
+  void hide() {
+    isHidden = true;
+    ctx.graphics.uiLayer.style.cursor = 'none';
+  }
+
+  void show() {
+    isHidden = false;
+    ctx.graphics.uiLayer.style.cursor = 'default';
   }
 }

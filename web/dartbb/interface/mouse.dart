@@ -16,6 +16,18 @@ bool MouseHit(int key) {
   return Core.dartbbCtx.mouse.hit(key);
 }
 
+void HideMouse() {
+  Core.dartbbCtx.mouse.hide();
+}
+
+void ShowMouse() {
+  Core.dartbbCtx.mouse.show();
+}
+
+bool IsMouseHidden() {
+  return Core.dartbbCtx.mouse.isHidden;
+}
+
 void FlushMouse() {
   Core.dartbbCtx.mouse.flush();
 }
