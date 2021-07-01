@@ -4,7 +4,7 @@ void Graphics(int width, int height, Function mainloop) {
   Core.dartbbCtx = Core(width: width, height: height, mainLoop: mainloop);
 }
 
-void Begin() {
+void RunGame() {
   Core.dartbbCtx.run();
 }
 
@@ -37,6 +37,10 @@ int GraphicsHeight() {
   return Core.dartbbCtx.graphics.graphicsHeight;
 }
 
-void SetUiCanvasFocused(bool focused) {
-  Core.dartbbCtx.graphics.setUiCanvasFocused(focused);
+void UiBegin() {
+  Core.dartbbCtx.graphics.setUiCanvasFocused(true);
+}
+
+void UiEnd() {
+  Core.dartbbCtx.graphics.setUiCanvasFocused(false);
 }

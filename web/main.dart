@@ -9,12 +9,14 @@ void main() async {
   image = await LoadImage('media/darticon.png');
   font = LoadFont('media/mandatoryplaything.ttf');
 
-  SetUiCanvasFocused(true);
+  // UiBegin tells dartbb to target the ui canvas
+  // All commands between UiBegin and UiEnd will target the ui canvas
+  UiBegin();
   SetFont(font);
-  SetUiCanvasFocused(false);
+  UiEnd();
 
   // Begin the render loop and therefore the given "mainLoop" (this must be called after all resources have been loaded)
-  Begin();
+  RunGame();
 }
 
 late Image image;
@@ -22,8 +24,11 @@ late Font font;
 
 void mainLoop() {
   Cls();
-  SetUiCanvasFocused(true);
+
+  // UiBegin/UiEnd can be called at any point as long as it is called after the Graphics command
+  UiBegin();
   DrawText(FpsString(), 10, 20);
-  SetUiCanvasFocused(false);
+  UiEnd();
+
   DrawImage(image, 50, 50);
 }

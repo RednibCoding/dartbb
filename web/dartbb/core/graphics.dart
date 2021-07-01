@@ -109,7 +109,7 @@ class Graphics {
 
   CanvasElement _createCanvasElement(String id, int width, int height,
       [bool hidden = false]) {
-    // #output is the default div produced by dart web
+    // #output is the default div produced by "stagehand web-simple"
     var output = querySelector('#output');
     var canvas = CanvasElement(width: width, height: height);
     canvas.setAttribute('id', id);
