@@ -7,3 +7,11 @@ Future<Image> LoadImage(String path) async {
 void DrawImage(Image image, num x, num y) {
   Core.dartbbCtx.graphics.drawImage(image, x, y);
 }
+
+num ImageWidth(Image image) {
+  return Core.dartbbCtx.graphics.imageWidth(image);
+}
+
+num ImageHeight(Image image) {
+  return Core.dartbbCtx.graphics.imageHeight(image);
+}

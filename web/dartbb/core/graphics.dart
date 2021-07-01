@@ -102,6 +102,14 @@ class Graphics {
     }
   }
 
+  num imageWidth(Image image) {
+    return image.element.width!;
+  }
+
+  num imageHeight(Image image) {
+    return image.element.height!;
+  }
+
   void drawText(String text, num x, num y) {
     if (_isUiCanvasFocused) {
       _uiLayer.context2D

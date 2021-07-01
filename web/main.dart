@@ -1,3 +1,6 @@
+import 'dart:html';
+import 'dart:web_gl';
+
 import 'dartbb/dartbb.dart';
 import 'dartbb/font.dart';
 import 'dartbb/image.dart';
@@ -30,6 +33,7 @@ void mainLoop() {
   UiBegin();
   DrawText('FPS: ${FpsString()}', 10, 20);
   DrawText('MS: ${MillisecsString()}', 100, 100);
+  DrawText('Press space :)', 100, 20);
   UiEnd();
 
   DrawText('FPS: ${FpsString()}', 20, 40);
@@ -44,12 +48,16 @@ void mainLoop() {
   }
 
   // See https://keycode.info for keycodes
-  if (KeyDown(32)) {
+  if (KeyDown(KeyCode.SPACE)) {
     var text = 'SPACE PRESSED';
     UiBegin();
     DrawText(text, GraphicsWidth() / 2 - TextWidth(text) / 2,
         GraphicsHeight() / 2 - TextHeight(text) / 2);
     UiEnd();
+    DrawText(
+        'Image size: ${ImageWidth(image).toString()} | ${ImageHeight(image).toString()}',
+        MouseX(),
+        MouseY() + 100);
   }
 
   if (IsMouseHidden()) {
