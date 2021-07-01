@@ -25,8 +25,12 @@ class Mouse {
 
   void _saveMousePos(MouseEvent e) {
     var r = ctx.graphics.gameLayer.getBoundingClientRect();
+    xSpeed = x;
+    ySpeed = y;
     x = e.client.x - r.left;
     y = e.client.y - r.top;
+    xSpeed = x - xSpeed;
+    ySpeed = y - ySpeed;
   }
 
   void _saveMouseDown(MouseEvent e) {
@@ -56,12 +60,16 @@ class Mouse {
     // todo
   }
 
-  void speedX() {
-    // todo
+  num speedX() {
+    var speed = ctx.mouse.xSpeed;
+    ctx.mouse.xSpeed = 0;
+    return speed;
   }
 
-  void speedY() {
-    // todo
+  num speedY() {
+    var speed = ctx.mouse.ySpeed;
+    ctx.mouse.ySpeed = 0;
+    return speed;
   }
 
   bool down(int key) {

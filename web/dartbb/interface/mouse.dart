@@ -8,6 +8,14 @@ num MouseY() {
   return Core.dartbbCtx.mouse.y;
 }
 
+num MouseXSpeed() {
+  return Core.dartbbCtx.mouse.speedX();
+}
+
+num MouseYSpeed() {
+  return Core.dartbbCtx.mouse.speedY();
+}
+
 bool MouseDown(int key) {
   return Core.dartbbCtx.mouse.down(key);
 }

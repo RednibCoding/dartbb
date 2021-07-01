@@ -48,7 +48,7 @@ void mainLoop() {
 
   DrawText(FpsString(), 20, 40);
   DrawText(MillisecsString(), 110, 120);
-  DrawText('${MouseX().toString()} | ${MouseY().toString()}', MouseX() + x,
-      MouseY() + y);
+  DrawText('${MouseXSpeed().toString()} | ${MouseYSpeed().toString()}',
+      MouseX() + x, MouseY() + y);
   DrawImage(image, MouseX(), MouseY());
 }
