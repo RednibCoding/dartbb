@@ -23,22 +23,16 @@ void main() async {
 late Image image;
 late Font font;
 
-int x = 20;
-int y = -20;
-
 void mainLoop() {
   Cls();
 
   // UiBegin/UiEnd can be called at any point as long as it is called after the Graphics command
   UiBegin();
-  DrawText(FpsString(), 10, 20);
-  DrawText(MillisecsString(), 100, 100);
+  DrawText("FPS: ${FpsString()}", 10, 20);
+  DrawText("MS: ${MillisecsString()}", 100, 100);
   UiEnd();
 
   if (MouseHit(0)) {
-    var tmp = x;
-    x = y;
-    y = tmp;
     if (IsMouseHidden()) {
       ShowMouse();
     } else {
@@ -46,9 +40,16 @@ void mainLoop() {
     }
   }
 
-  DrawText(FpsString(), 20, 40);
-  DrawText(MillisecsString(), 110, 120);
-  DrawText('${MouseXSpeed().toString()} | ${MouseYSpeed().toString()}',
-      MouseX() + x, MouseY() + y);
+  DrawText("FPS: ${FpsString()}", 20, 40);
+  DrawText("MS: ${MillisecsString()}", 110, 120);
+  if (IsMouseHidden()) {
+    DrawText(
+        'mxs: ${MouseXSpeed().toString()} | mys: ${MouseYSpeed().toString()}',
+        MouseX() + 50,
+        MouseY() + 80);
+  } else {
+    DrawText('mx: ${MouseX().toString()} | my: ${MouseY().toString()}',
+        MouseX() - 50, MouseY() - 20);
+  }
   DrawImage(image, MouseX(), MouseY());
 }
