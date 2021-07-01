@@ -3,7 +3,7 @@ import 'dartbb/font.dart';
 import 'dartbb/image.dart';
 
 void main() async {
-  // Innitialize graphics context (this must be called before any other dartbb function)
+  // Initialize graphics context (this must be called before any other dartbb function)
   Graphics(640, 480, mainLoop);
 
   // Loading stuff
