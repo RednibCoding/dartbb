@@ -19,6 +19,13 @@ class Graphics {
     _color = Color(255, 255, 255);
     _gameLayer = _createCanvasElement('canvas', width, height);
     _uiLayer = _createCanvasElement('ui', width, height);
+    // tabIndex is needed in order for keyboard events to work.
+    // Without a tabIndex, the canvas element cannot be focused
+    // and an element witout focus cannot receive any events
+    _gameLayer.tabIndex = 9998;
+    _uiLayer.tabIndex = 9999;
+    _gameLayer.style.outline = 'none';
+    _uiLayer.style.outline = 'none';
   }
 
   int get graphicsWidth => _gameLayer.width ?? 0;
@@ -104,6 +111,38 @@ class Graphics {
       _gameLayer.context2D
           .setFillColorRgb(_color.r, _color.g, _color.b, _color.a);
       _gameLayer.context2D.fillText(text, x, y);
+    }
+  }
+
+  num textWidth(String text) {
+    if (_isUiCanvasFocused) {
+      return _uiLayer.context2D.measureText(text).width!;
+    } else {
+      return _gameLayer.context2D.measureText(text).width!;
+    }
+  }
+
+  num textHeight(String text) {
+    if (_isUiCanvasFocused) {
+      var metrics = _uiLayer.context2D.measureText(text);
+      // gets the bounding box height that is constant regardless of the string being rendered
+      // ignore: unused_local_variable
+      var fontHeight =
+          metrics.fontBoundingBoxAscent! + metrics.fontBoundingBoxDescent!;
+      // is specific to the string being rendered
+      var actualHeight =
+          metrics.actualBoundingBoxAscent! + metrics.actualBoundingBoxDescent!;
+      return actualHeight;
+    } else {
+      var metrics = _gameLayer.context2D.measureText(text);
+      // gets the bounding box height that is constant regardless of the string being rendered
+      // ignore: unused_local_variable
+      var fontHeight =
+          metrics.fontBoundingBoxAscent! + metrics.fontBoundingBoxDescent!;
+      // is specific to the string being rendered
+      var actualHeight =
+          metrics.actualBoundingBoxAscent! + metrics.actualBoundingBoxDescent!;
+      return actualHeight;
     }
   }
 

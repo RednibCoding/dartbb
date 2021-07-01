@@ -43,6 +43,15 @@ void mainLoop() {
     }
   }
 
+  // See https://keycode.info for keycodes
+  if (KeyDown(32)) {
+    var text = 'SPACE PRESSED';
+    UiBegin();
+    DrawText(text, GraphicsWidth() / 2 - TextWidth(text) / 2,
+        GraphicsHeight() / 2 - TextHeight(text) / 2);
+    UiEnd();
+  }
+
   if (IsMouseHidden()) {
     DrawText(
         'mxs: ${MouseXSpeed().toString()} | mys: ${MouseYSpeed().toString()}',

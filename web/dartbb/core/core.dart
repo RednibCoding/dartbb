@@ -3,6 +3,7 @@ library dartbb.core;
 import 'dart:html';
 import '../time.dart';
 import 'graphics.dart';
+import 'keyboard.dart';
 import 'mouse.dart';
 
 class Core {
@@ -16,6 +17,7 @@ class Core {
   late Function _mainLoop;
   late Graphics graphics;
   late Mouse mouse;
+  late Keyboard keyboard;
 
   int get fps => _fps;
   int get millisecs => _time.milliSecs();
@@ -28,6 +30,7 @@ class Core {
     _mainLoop = mainLoop;
     graphics = Graphics(width, height);
     mouse = Mouse(this);
+    keyboard = Keyboard(this);
   }
 
   void run() async {

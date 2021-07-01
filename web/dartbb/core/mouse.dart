@@ -1,8 +1,11 @@
+library dartbb.mouse;
+
 import 'dart:html';
 
 import 'core.dart';
 
 class Mouse {
+  late Core ctx;
   num x = 0;
   num y = 0;
   num xSpeed = 0;
@@ -10,7 +13,6 @@ class Mouse {
   num zSpeed = 0;
   bool isHidden = false;
   List<bool> keys = [];
-  late Core ctx;
 
   Mouse(Core ctx) {
     this.ctx = ctx;
@@ -20,7 +22,7 @@ class Mouse {
     this.ctx.graphics.uiLayer.onTouchMove.listen(_saveTouchPos);
     this.ctx.graphics.uiLayer.onTouchStart.listen(_saveTouchDown);
     this.ctx.graphics.uiLayer.onTouchEnd.listen(_saveTouchUp);
-    keys = List.filled(99, false);
+    keys = List.filled(128, false);
   }
 
   void _saveMousePos(MouseEvent e) {

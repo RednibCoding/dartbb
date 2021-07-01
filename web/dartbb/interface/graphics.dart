@@ -29,6 +29,14 @@ void SetFont(Font font,
   Core.dartbbCtx.graphics.setFont(font, size, bold, italic, weight);
 }
 
+num TextWidth(String text) {
+  return Core.dartbbCtx.graphics.textWidth(text);
+}
+
+num TextHeight(String text) {
+  return Core.dartbbCtx.graphics.textHeight(text);
+}
+
 int GraphicsWidth() {
   return Core.dartbbCtx.graphics.graphicsWidth;
 }
