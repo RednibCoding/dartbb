@@ -20,6 +20,10 @@ void SetColor(int r, int g, int b, [double a = 1.0]) {
   Core.dartbbCtx.graphics.setColor(r, g, b, a);
 }
 
+void TFormFilter(bool val) {
+  Core.dartbbCtx.graphics.setTFormFilter(val);
+}
+
 void SetAutoMidhandle(bool val) {
   Core.dartbbCtx.graphics.setAutoMidhandle(val);
 }

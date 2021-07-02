@@ -55,6 +55,10 @@ class Graphics {
     _autoMidhandle = val;
   }
 
+  void setTFormFilter(bool val) {
+    _canvas.context2D.imageSmoothingEnabled = val;
+  }
+
   Font loadFont(String path) {
     var name = (path.split('/').last).split('.').first;
     return Font(path, name);

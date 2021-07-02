@@ -7,6 +7,7 @@ import 'dartbb/image.dart';
 void main() async {
   // Initialize graphics context (this must be called before any other dartbb function)
   Graphics(640, 480, mainLoop);
+  TFormFilter(true);
   SetAutoMidhandle(true);
   // Loading stuff
   image1 = await LoadImage('media/darticon.png');
