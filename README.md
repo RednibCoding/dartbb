@@ -169,34 +169,34 @@ void mainLoop() {
 </details>
 
 ## Progress
-- Create a canvas object for drawing **(Done)**
-- Clear screen **(Done)**
-- Setting clear color **(Done)**
-- Autoresizing of canvas when window size changes
-- Setting tformfilter **(Done)**
-- Loading images **(Done)**
-- Drawing images **(Done)**
-- Change pivot point of images **(Done)**
-- Auto changing pivot points of images (animating) **(Done)**
-- Draw text **(Done)**
-- Setting text color **(Done)**
-- Load fonts **(Done)**
-- Set fonts **(Done)**
-- Mouse down/hit **(Done)**
-- Show/Hide mouse cursor **(Done)**
-- Keyboad key down/hit **(Done)**
-- Mousewheel scolling
-- Touchinput
-- Rotating images **(Done)**
-- Scaling images **(Done)**
-- Auto rotating/scaling of images (animating) **(Done)**
-- Fps counter **(Done)**
-- Spritesheet loading
-- Spritesheed drawing
-- Spritesheet autodrawing (animating)
-- Draw primitives (line, rect, circle)
-- Load sounds
-- Play sounds
-- WebGL renderer
-- Documentation
+- [x] Create a canvas object for drawing
+- [x] Clear screen
+- [x] Setting clear color
+- [ ] Autoresizing of canvas when window size changes
+- [x] Setting tformfilter
+- [x] Loading images
+- [x] Drawing images
+- [x] Change pivot point of images
+- [x] Auto changing pivot points of images (animating)
+- [x] Draw text
+- [x] Setting text color
+- [x] Load fonts
+- [x] Set fonts
+- [x] Mouse down/hit
+- [x] Show/Hide mouse cursor
+- [x] Keyboad key down/hit
+- [ ] Mousewheel scolling
+- [ ] Touchinput
+- [x] Rotating images
+- [x] Scaling images
+- [x] Auto rotating/scaling of images (animating)
+- [x] Fps counter
+- [ ] Spritesheet loading
+- [ ] Spritesheed drawing
+- [ ] Spritesheet autodrawing (animating)
+- [ ] Draw primitives (line, rect, circle)
+- [ ] Load sounds
+- [ ] Play sounds
+- [ ] WebGL renderer
+- [ ] Documentation
 
