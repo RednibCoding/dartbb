@@ -12,7 +12,11 @@ _* with easy, we really mean easy. A minimalistc set of functions that gets the 
 
 ## Demo Video
 
-https://user-images.githubusercontent.com/28296119/124291748-2d153600-db55-11eb-8c4f-0a32313311cf.mov
+
+
+https://user-images.githubusercontent.com/28296119/124331512-9fa30780-db8f-11eb-9bdf-b0aafe59db02.mov
+
+
 
 <details>
   <summary>Click to see the code</summary>
@@ -27,6 +31,7 @@ import 'dartbb/image.dart';
 void main() async {
   // Initialize graphics context (this must be called before any other dartbb function)
   Graphics(640, 480, mainLoop);
+  TFormFilter(true);
   SetAutoMidhandle(true);
   // Loading stuff
   image1 = await LoadImage('media/darticon.png');
@@ -70,7 +75,45 @@ void mainLoop() {
 
   DrawText('FPS: ${FpsString()}', 10, 20);
   DrawText('MS: ${MillisecsString()}', 10, 40);
-  DrawText('Press space :)', 100, 20);
+  DrawText(
+      'Press space', GraphicsWidth() / 2 - TextWidth('Press space') / 2, 20);
+
+  var anchorX = 120;
+  var anchorY = 100;
+  var lineThickness = 3;
+
+  DrawLine(anchorX, anchorY, anchorX + 20, anchorY + 20, lineThickness);
+  DrawRect(anchorX + 100, anchorY, 20, 20);
+  DrawRect(anchorX + 200, anchorY, 20, 20, false, lineThickness);
+  DrawCircle(anchorX + 300, anchorY + 10, 10);
+  DrawCircle(anchorX + 400, anchorY + 10, 10, false, lineThickness);
+
+  // Auto animating is pretty easy right? :)
+
+  AutoScaleImageX(image2, 0.04, 0, 1, true);
+  DrawImage(image2, anchorX, anchorY + 100);
+
+  AutoScaleImageX(image3, 0.05, 0.5, 1.5, true);
+  AutoScaleImageY(image3, 0.05, 0.8, 1.8, true);
+  DrawImage(image3, anchorX + 100, anchorY + 100);
+
+  AutoScaleImageX(image4, 0.05, 0, 2, true);
+  AutoScaleImageY(image4, 0.05, 0, 2, true);
+  AutoRotateImage(image4, 2);
+  DrawImage(image4, anchorX + 200, anchorY + 100);
+
+  AutoScaleImageX(image5, 0.04, 0, 1, true);
+  AutoRotateImage(image5, 1);
+  DrawImage(image5, anchorX + 300, anchorY + 100);
+
+  AutoRotateImage(image6, 2, 90, 360, true);
+  DrawImage(image6, anchorX + 400, anchorY + 100);
+
+  AutoHandleImageX(image1, 1, -50, 50, true);
+  AutoHandleImageY(image1, 2, -40, 40, true);
+  AutoRotateImage(image1, 2);
+  DrawImage(
+      image1, GraphicsWidth() / 2, GraphicsHeight() / 2 + ImageHeight(image1));
 
   if (mhLeft) {
     if (IsMouseHidden()) {
@@ -102,38 +145,7 @@ void mainLoop() {
     DrawText('mx: ${MouseX().toString()} | my: ${MouseY().toString()}',
         MouseX() - 50, MouseY() + 80);
   }
-
-  var anchorX = 120;
-  var anchorY = 100;
-
-  // Auto animating is pretty easy right? :)
-
-  AutoScaleImageX(image2, 0.04, 0, 1, true);
-  DrawImage(image2, anchorX, anchorY);
-
-  AutoScaleImageX(image3, 0.05, 0.5, 1.5, true);
-  AutoScaleImageY(image3, 0.05, 0.8, 1.8, true);
-  DrawImage(image3, anchorX + 100, anchorY);
-
-  AutoScaleImageX(image4, 0.05, 0, 2, true);
-  AutoScaleImageY(image4, 0.05, 0, 2, true);
-  AutoRotateImage(image4, 2);
-  DrawImage(image4, anchorX + 200, anchorY);
-
-  AutoScaleImageX(image5, 0.04, 0, 1, true);
-  AutoRotateImage(image5, 1);
-  DrawImage(image5, anchorX + 300, anchorY);
-
-  AutoRotateImage(image6, 2, 90, 360, true);
-  DrawImage(image6, anchorX + 400, anchorY);
-
-  AutoHandleImageX(image1, 1, -50, 50, true);
-  AutoHandleImageY(image1, 2, -50, 50, true);
-  AutoRotateImage(image1, 2);
-  DrawImage(image1, GraphicsWidth() / 2,
-      GraphicsHeight() / 2 + ImageHeight(image1) / 2);
 }
-
 
   ```
 </details>
@@ -184,7 +196,7 @@ void mainLoop() {
 - [x] Change pivot point of images
 - [x] Auto changing pivot points of images (animating)
 - [x] Draw text
-- [ ] Draw primitives (line, rect, circle)
+- [x] Draw primitives (line, rect, circle)
 - [x] Setting color (for text and primitives drawing)
 - [x] Load fonts
 - [x] Set fonts
