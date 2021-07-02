@@ -21,6 +21,7 @@ class Core {
 
   int get fps => _fps;
   int get millisecs => _time.milliSecs();
+  int get deltaTime => _elapsedTime;
 
   Core({
     required int width,

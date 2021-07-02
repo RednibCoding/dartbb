@@ -15,3 +15,7 @@ int Millisecs() {
 String MillisecsString() {
   return Core.dartbbCtx.millisecs.toString();
 }
+
+int DeltaTime() {
+  return Core.dartbbCtx.deltaTime;
+}
