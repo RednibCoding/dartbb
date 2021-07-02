@@ -2,7 +2,12 @@
 # dartbb
 dartbb (dart**b**litz**b**asic) is a native Dart 2d web framework inspired by the BlitzBasic language.
 
-_Currently this is a web-simple project to make testing easier. Later, when this framework becomes more mature, it will be released as a pub package_
+## Goal
+The goal behind **dartbb** is to provide a minimalistic and easy<b>*</b> to use 2d framework where one can build it's own game/gameengine ontop of.
+
+_* with easy, we really mean easy. A minimalistc set of functions that gets the essential work done._
+
+**_Currently this is a web-simple project to make testing easier. Later, when this framework becomes more mature, it will be released as a pub package_**
 
 
 ## Demo Video
