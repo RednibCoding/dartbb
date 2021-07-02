@@ -40,7 +40,6 @@ void mainLoop() {
 
   var mhLeft = MouseHit(0);
 
-  // UiBegin/UiEnd can be called at any point as long as it is called after the Graphics command
   DrawText('FPS: ${FpsString()}', 10, 20);
   DrawText('MS: ${MillisecsString()}', 10, 40);
   DrawText('Press space :)', 100, 20);
