@@ -40,6 +40,7 @@ void mainLoop() {
 
 ## Progress
 - Create a canvas object for drawing **(Done)**
+- Autoresizing of canvas when window size changes
 - Loading images **(Done)**
 - Drawing images **(Done)**
 - Change pivot point of images **(Done)**
