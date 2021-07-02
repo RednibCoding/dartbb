@@ -1,5 +1,4 @@
 import 'dart:html';
-import 'dart:web_gl';
 
 import 'dartbb/dartbb.dart';
 import 'dartbb/font.dart';
@@ -13,11 +12,7 @@ void main() async {
   image = await LoadImage('media/darticon.png');
   font = LoadFont('media/mandatoryplaything.ttf');
 
-  // UiBegin tells dartbb to target the ui canvas
-  // All commands between UiBegin and UiEnd will target the ui canvas
-  UiBegin();
   SetFont(font);
-  UiEnd();
 
   // Begin the render loop and therefore the given "mainLoop" (this must be called after all resources have been loaded)
   RunGame();
@@ -30,11 +25,9 @@ void mainLoop() {
   Cls();
 
   // UiBegin/UiEnd can be called at any point as long as it is called after the Graphics command
-  UiBegin();
   DrawText('FPS: ${FpsString()}', 10, 20);
   DrawText('MS: ${MillisecsString()}', 100, 100);
   DrawText('Press space :)', 100, 20);
-  UiEnd();
 
   DrawText('FPS: ${FpsString()}', 20, 40);
   DrawText('MS: ${MillisecsString()}', 110, 120);
@@ -50,10 +43,8 @@ void mainLoop() {
   // See https://keycode.info for keycodes
   if (KeyDown(KeyCode.SPACE)) {
     var text = 'SPACE PRESSED';
-    UiBegin();
     DrawText(text, GraphicsWidth() / 2 - TextWidth(text) / 2,
         GraphicsHeight() / 2 - TextHeight(text) / 2);
-    UiEnd();
     DrawText(
         'Image size: ${ImageWidth(image).toString()} | ${ImageHeight(image).toString()}',
         MouseX(),

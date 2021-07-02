@@ -10,8 +10,8 @@ class Keyboard {
 
   Keyboard(Core ctx) {
     this.ctx = ctx;
-    this.ctx.graphics.uiLayer.onKeyDown.listen(_saveKeyDown);
-    this.ctx.graphics.uiLayer.onKeyUp.listen(_saveKeyUp);
+    this.ctx.graphics.canvas.onKeyDown.listen(_saveKeyDown);
+    this.ctx.graphics.canvas.onKeyUp.listen(_saveKeyUp);
     keys = List.filled(255, false);
   }
 

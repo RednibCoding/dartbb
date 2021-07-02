@@ -6,47 +6,31 @@ import '../image.dart';
 import '../color.dart';
 
 class Graphics {
-  late CanvasElement _gameLayer;
-  late CanvasElement _uiLayer;
+  late CanvasElement _canvas;
   late Color _clsColor;
   late Color _color;
-  // is used on draw operations to determine target canvas (game canvas / ui canvas)
-  // ignore: prefer_final_fields
-  bool _isUiCanvasFocused = false;
 
   Graphics(int width, int height) {
     _clsColor = Color(0, 0, 0);
     _color = Color(255, 255, 255);
-    _gameLayer = _createCanvasElement('canvas', width, height);
-    _uiLayer = _createCanvasElement('ui', width, height);
+    _canvas = _createCanvasElement('canvas', width, height);
     // tabIndex is needed in order for keyboard events to work.
     // Without a tabIndex, the canvas element cannot be focused
     // and an element witout focus cannot receive any events
-    _gameLayer.tabIndex = 9998;
-    _uiLayer.tabIndex = 9999;
-    _gameLayer.style.outline = 'none';
-    _uiLayer.style.outline = 'none';
+    _canvas.tabIndex = 9999;
+    _canvas.style.outline = 'none';
   }
 
-  int get graphicsWidth => _gameLayer.width ?? 0;
-  int get graphicsHeight => _gameLayer.height ?? 0;
-  CanvasElement get gameLayer => _gameLayer;
-  CanvasElement get uiLayer => _uiLayer;
-
-  void setUiCanvasFocused(bool focused) {
-    _isUiCanvasFocused = focused;
-  }
+  int get graphicsWidth => _canvas.width ?? 0;
+  int get graphicsHeight => _canvas.height ?? 0;
+  CanvasElement get canvas => _canvas;
 
   void cls() {
-    _gameLayer.context2D
+    _canvas.context2D
         .setFillColorRgb(_clsColor.r, _clsColor.g, _clsColor.b, _clsColor.a);
-    _gameLayer.context2D.setTransform(1, 0, 0, 1, 0, 0);
-    _gameLayer.context2D
-        .fillRect(0, 0, _gameLayer.width as num, _gameLayer.height as num);
-    _uiLayer.context2D.setFillColorRgb(0, 0, 0, 0);
-    _uiLayer.context2D.setTransform(1, 0, 0, 1, 0, 0);
-    _uiLayer.context2D
-        .clearRect(0, 0, _uiLayer.width as num, _uiLayer.height as num);
+    _canvas.context2D.setTransform(1, 0, 0, 1, 0, 0);
+    _canvas.context2D
+        .fillRect(0, 0, _canvas.width as num, _canvas.height as num);
   }
 
   void clsColor(int r, int g, int b, [double a = 1.0]) {
@@ -82,11 +66,7 @@ class Graphics {
       data += 'oblique ';
     }
     var fontData = '$data${size}px ${font.name}';
-    if (_isUiCanvasFocused) {
-      _uiLayer.context2D.font = fontData;
-    } else {
-      _gameLayer.context2D.font = fontData;
-    }
+    _canvas.context2D.font = fontData;
   }
 
   Future<Image> loadImage(String path) async {
@@ -95,11 +75,7 @@ class Graphics {
   }
 
   void drawImage(Image img, num x, num y) {
-    if (_isUiCanvasFocused) {
-      _uiLayer.context2D.drawImage(img.element, x, y);
-    } else {
-      _gameLayer.context2D.drawImage(img.element, x, y);
-    }
+    _canvas.context2D.drawImage(img.element, x, y);
   }
 
   num imageWidth(Image image) {
@@ -111,47 +87,24 @@ class Graphics {
   }
 
   void drawText(String text, num x, num y) {
-    if (_isUiCanvasFocused) {
-      _uiLayer.context2D
-          .setFillColorRgb(_color.r, _color.g, _color.b, _color.a);
-      _uiLayer.context2D.fillText(text, x, y);
-    } else {
-      _gameLayer.context2D
-          .setFillColorRgb(_color.r, _color.g, _color.b, _color.a);
-      _gameLayer.context2D.fillText(text, x, y);
-    }
+    _canvas.context2D.setFillColorRgb(_color.r, _color.g, _color.b, _color.a);
+    _canvas.context2D.fillText(text, x, y);
   }
 
   num textWidth(String text) {
-    if (_isUiCanvasFocused) {
-      return _uiLayer.context2D.measureText(text).width!;
-    } else {
-      return _gameLayer.context2D.measureText(text).width!;
-    }
+    return _canvas.context2D.measureText(text).width!;
   }
 
   num textHeight(String text) {
-    if (_isUiCanvasFocused) {
-      var metrics = _uiLayer.context2D.measureText(text);
-      // gets the bounding box height that is constant regardless of the string being rendered
-      // ignore: unused_local_variable
-      var fontHeight =
-          metrics.fontBoundingBoxAscent! + metrics.fontBoundingBoxDescent!;
-      // is specific to the string being rendered
-      var actualHeight =
-          metrics.actualBoundingBoxAscent! + metrics.actualBoundingBoxDescent!;
-      return actualHeight;
-    } else {
-      var metrics = _gameLayer.context2D.measureText(text);
-      // gets the bounding box height that is constant regardless of the string being rendered
-      // ignore: unused_local_variable
-      var fontHeight =
-          metrics.fontBoundingBoxAscent! + metrics.fontBoundingBoxDescent!;
-      // is specific to the string being rendered
-      var actualHeight =
-          metrics.actualBoundingBoxAscent! + metrics.actualBoundingBoxDescent!;
-      return actualHeight;
-    }
+    var metrics = _canvas.context2D.measureText(text);
+    // gets the bounding box height that is constant regardless of the string being rendered
+    // ignore: unused_local_variable
+    var fontHeight =
+        metrics.fontBoundingBoxAscent! + metrics.fontBoundingBoxDescent!;
+    // is specific to the string being rendered
+    var actualHeight =
+        metrics.actualBoundingBoxAscent! + metrics.actualBoundingBoxDescent!;
+    return actualHeight;
   }
 
   CanvasElement _createCanvasElement(String id, int width, int height,

@@ -56,12 +56,10 @@ class Core {
   }
 
   void _preRender() {
-    graphics.gameLayer.context2D.save();
-    graphics.uiLayer.context2D.save();
+    graphics.canvas.context2D.save();
   }
 
   void _postRender() {
-    graphics.gameLayer.context2D.restore();
-    graphics.uiLayer.context2D.restore();
+    graphics.canvas.context2D.restore();
   }
 }

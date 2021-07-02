@@ -16,17 +16,17 @@ class Mouse {
 
   Mouse(Core ctx) {
     this.ctx = ctx;
-    this.ctx.graphics.uiLayer.onMouseMove.listen(_saveMousePos);
-    this.ctx.graphics.uiLayer.onMouseDown.listen(_saveMouseDown);
-    this.ctx.graphics.uiLayer.onMouseUp.listen(_saveMouseUp);
-    this.ctx.graphics.uiLayer.onTouchMove.listen(_saveTouchPos);
-    this.ctx.graphics.uiLayer.onTouchStart.listen(_saveTouchDown);
-    this.ctx.graphics.uiLayer.onTouchEnd.listen(_saveTouchUp);
+    this.ctx.graphics.canvas.onMouseMove.listen(_saveMousePos);
+    this.ctx.graphics.canvas.onMouseDown.listen(_saveMouseDown);
+    this.ctx.graphics.canvas.onMouseUp.listen(_saveMouseUp);
+    this.ctx.graphics.canvas.onTouchMove.listen(_saveTouchPos);
+    this.ctx.graphics.canvas.onTouchStart.listen(_saveTouchDown);
+    this.ctx.graphics.canvas.onTouchEnd.listen(_saveTouchUp);
     keys = List.filled(128, false);
   }
 
   void _saveMousePos(MouseEvent e) {
-    var r = ctx.graphics.gameLayer.getBoundingClientRect();
+    var r = ctx.graphics.canvas.getBoundingClientRect();
     xSpeed = x;
     ySpeed = y;
     x = e.client.x - r.left;
@@ -44,7 +44,7 @@ class Mouse {
   }
 
   void _saveTouchPos(TouchEvent e) {
-    var r = ctx.graphics.gameLayer.getBoundingClientRect();
+    var r = ctx.graphics.canvas.getBoundingClientRect();
     var touches = e.changedTouches;
     if (touches != null && touches.isNotEmpty) {
       touches.forEach((t) {
@@ -92,11 +92,11 @@ class Mouse {
 
   void hide() {
     isHidden = true;
-    ctx.graphics.uiLayer.style.cursor = 'none';
+    ctx.graphics.canvas.style.cursor = 'none';
   }
 
   void show() {
     isHidden = false;
-    ctx.graphics.uiLayer.style.cursor = 'default';
+    ctx.graphics.canvas.style.cursor = 'default';
   }
 }

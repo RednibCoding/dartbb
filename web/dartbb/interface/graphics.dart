@@ -27,11 +27,3 @@ int GraphicsWidth() {
 int GraphicsHeight() {
   return Core.dartbbCtx.graphics.graphicsHeight;
 }
-
-void UiBegin() {
-  Core.dartbbCtx.graphics.setUiCanvasFocused(true);
-}
-
-void UiEnd() {
-  Core.dartbbCtx.graphics.setUiCanvasFocused(false);
-}
