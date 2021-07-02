@@ -199,8 +199,16 @@ void mainLoop() {
 - [x] Setting TFormFilter (smoothing of images)
 - [x] Loading images
 - [x] Drawing images
+- [x] Rotating images
+- [x] Scaling images
+- [x] Auto rotating/scaling of images (animating)
 - [x] Change pivot point of images
 - [x] Auto changing pivot points of images (animating)
+- [ ] Change alpha of images
+- [ ] Autochanging alpha of images (animating)
+- [ ] Spritesheet loading
+- [ ] Spritesheed drawing
+- [ ] Spritesheet autodrawing (animating)
 - [x] Draw text
 - [x] Draw primitives (line, rect, circle)
 - [x] Setting color (for text and primitives drawing)
@@ -211,14 +219,8 @@ void mainLoop() {
 - [x] Keyboad key down/hit
 - [ ] Mousewheel scolling
 - [ ] Touchinput
-- [x] Rotating images
-- [x] Scaling images
-- [x] Auto rotating/scaling of images (animating)
 - [x] Fps counter
 - [x] Delta time
-- [ ] Spritesheet loading
-- [ ] Spritesheed drawing
-- [ ] Spritesheet autodrawing (animating)
 - [ ] Collision detection
 - [ ] Load sounds
 - [ ] Play sounds
