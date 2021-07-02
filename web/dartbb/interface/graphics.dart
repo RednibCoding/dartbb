@@ -39,3 +39,17 @@ int GraphicsWidth() {
 int GraphicsHeight() {
   return Core.dartbbCtx.graphics.graphicsHeight;
 }
+
+void DrawLine(num startX, num startY, num endX, num endY, [num thickness = 1]) {
+  Core.dartbbCtx.graphics.line(startX, startY, endX, endY, thickness);
+}
+
+void DrawRect(num x, num y, num width, num height,
+    [bool fill = true, num thickness = 1]) {
+  Core.dartbbCtx.graphics.rect(x, y, width, height, fill, thickness);
+}
+
+void DrawCircle(num centerX, num centerY, num radius,
+    [bool fill = true, num thickness = 1]) {
+  Core.dartbbCtx.graphics.circle(centerX, centerY, radius, fill, thickness);
+}

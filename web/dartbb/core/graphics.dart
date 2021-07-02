@@ -81,6 +81,49 @@ class Graphics {
     _canvas.context2D.font = fontData;
   }
 
+  void line(num startX, num startY, num endX, num endY, num thickness) {
+    _canvas.context2D.setStrokeColorRgb(_color.r, _color.g, _color.b, _color.a);
+    var oldLineWidth = _canvas.context2D.lineWidth;
+    _canvas.context2D.lineWidth = thickness;
+    _canvas.context2D.beginPath();
+    _canvas.context2D.moveTo(startX, startY);
+    _canvas.context2D.lineTo(endX, endY);
+    _canvas.context2D.stroke();
+    _canvas.context2D.lineWidth = oldLineWidth;
+  }
+
+  void rect(num x, num y, num width, num height, bool fill, num thickness) {
+    var oldLineWidth = _canvas.context2D.lineWidth;
+    _canvas.context2D.lineWidth = thickness;
+    if (fill) {
+      _canvas.context2D.setFillColorRgb(_color.r, _color.g, _color.b, _color.a);
+      _canvas.context2D.fillRect(x, y, width, height);
+    } else {
+      _canvas.context2D
+          .setStrokeColorRgb(_color.r, _color.g, _color.b, _color.a);
+      _canvas.context2D.strokeRect(x, y, width, height);
+    }
+    _canvas.context2D.lineWidth = oldLineWidth;
+  }
+
+  void circle(num centerX, num centerY, num radius, bool fill, num thickness) {
+    var oldLineWidth = _canvas.context2D.lineWidth;
+    _canvas.context2D.lineWidth = thickness;
+    if (fill) {
+      _canvas.context2D.setFillColorRgb(_color.r, _color.g, _color.b, _color.a);
+      _canvas.context2D.beginPath();
+      _canvas.context2D.arc(centerX, centerY, radius, 0, 2 * pi);
+      _canvas.context2D.fill();
+    } else {
+      _canvas.context2D
+          .setStrokeColorRgb(_color.r, _color.g, _color.b, _color.a);
+      _canvas.context2D.beginPath();
+      _canvas.context2D.arc(centerX, centerY, radius, 0, 2 * pi);
+      _canvas.context2D.stroke();
+    }
+    _canvas.context2D.lineWidth = oldLineWidth;
+  }
+
   Future<Image> loadImage(String path) async {
     var image = ImageElement(src: path);
     return await image.onLoad.first.then((value) => Image(image));
