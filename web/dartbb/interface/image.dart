@@ -15,3 +15,27 @@ num ImageWidth(Image image) {
 num ImageHeight(Image image) {
   return Core.dartbbCtx.graphics.imageHeight(image);
 }
+
+void SetImageMidhandle(Image image, bool val) {
+  image.setMidHandle(val);
+}
+
+void HandleImage(Image image, num x, num y) {
+  image.setHandle(x, y);
+}
+
+void ScaleImage(Image image, num x, num y) {
+  image.setScale(x, y);
+}
+
+void RotateImage(Image image, num rotation) {
+  image.setRotation(rotation);
+}
+
+void AddImageRotation(Image image, num rotation) {
+  image.setRotation(rotation + image.rotation);
+}
+
+num ImageRotation(Image image) {
+  return image.rotation;
+}

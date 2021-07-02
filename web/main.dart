@@ -10,7 +10,7 @@ void main() async {
   SetAutoMidhandle(true);
   // Loading stuff
   image = await LoadImage('media/darticon.png');
-
+  ScaleImage(image, 1.5, 1.5);
   font = LoadFont('media/mandatoryplaything.ttf');
 
   SetFont(font);
@@ -21,19 +21,19 @@ void main() async {
 
 late Image image;
 late Font font;
+num rot = 2;
 
 void mainLoop() {
   Cls();
 
+  var mhLeft = MouseHit(0);
+
   // UiBegin/UiEnd can be called at any point as long as it is called after the Graphics command
   DrawText('FPS: ${FpsString()}', 10, 20);
-  DrawText('MS: ${MillisecsString()}', 100, 100);
+  DrawText('MS: ${MillisecsString()}', 10, 40);
   DrawText('Press space :)', 100, 20);
 
-  DrawText('FPS: ${FpsString()}', 20, 40);
-  DrawText('MS: ${MillisecsString()}', 110, 120);
-
-  if (MouseHit(0)) {
+  if (mhLeft) {
     if (IsMouseHidden()) {
       ShowMouse();
     } else {
@@ -43,23 +43,27 @@ void mainLoop() {
 
   // See https://keycode.info for keycodes
   if (KeyDown(KeyCode.SPACE)) {
-    var text = 'SPACE PRESSED';
+    var text =
+        'Image size: ${ImageWidth(image).toString()} | ${ImageHeight(image).toString()}';
     DrawText(text, GraphicsWidth() / 2 - TextWidth(text) / 2,
         GraphicsHeight() / 2 - TextHeight(text) / 2);
-    DrawText(
-        'Image size: ${ImageWidth(image).toString()} | ${ImageHeight(image).toString()}',
-        MouseX(),
-        MouseY() + 100);
   }
 
   if (IsMouseHidden()) {
     DrawText(
         'mxs: ${MouseXSpeed().toString()} | mys: ${MouseYSpeed().toString()}',
-        MouseX() + 50,
+        MouseX() - 50,
         MouseY() + 80);
   } else {
     DrawText('mx: ${MouseX().toString()} | my: ${MouseY().toString()}',
-        MouseX() - 50, MouseY() - 20);
+        MouseX() - 50, MouseY() + 80);
   }
+
+  if (mhLeft) {
+    rot /= -1;
+  }
+
+  AddImageRotation(image, rot);
+  DrawText('Rotation: ${ImageRotation(image)}', MouseX() - 50, MouseY() + 100);
   DrawImage(image, MouseX(), MouseY());
 }

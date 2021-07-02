@@ -1,10 +1,10 @@
 library dartbb.graphics;
 
 import 'dart:html';
+import 'dart:math';
 import '../font.dart';
 import '../image.dart';
 import '../color.dart';
-import 'core.dart';
 
 class Graphics {
   late CanvasElement _canvas;
@@ -16,6 +16,7 @@ class Graphics {
     _clsColor = Color(0, 0, 0);
     _color = Color(255, 255, 255);
     _canvas = _createCanvasElement('canvas', width, height);
+
     // tabIndex is needed in order for keyboard events to work.
     // Without a tabIndex, the canvas element cannot be focused
     // and an element witout focus cannot receive any events
@@ -81,15 +82,25 @@ class Graphics {
     return await image.onLoad.first.then((value) => Image(image));
   }
 
-  void drawImage(Image img, num x, num y) {
-    var dx = x - img.hndlX;
-    var dy = y - img.hndlY;
-    if (_autoMidhandle || img.midHandle) {
-      dx -= img.element.width! / 2;
-      dy -= img.element.height! / 2;
+  void drawImage(Image image, num x, num y) {
+    var origX = x;
+    var origY = y;
+    x /= image.scaleX;
+    y /= image.scaleY;
+
+    var dx = x - image.hndlX;
+    var dy = y - image.hndlY;
+    if (_autoMidhandle || image.midHandle) {
+      dx -= image.element.width! / 2;
+      dy -= image.element.height! / 2;
     }
     _canvas.context2D.save();
-    _canvas.context2D.drawImage(img.element, dx, dy);
+    _canvas.context2D.translate(origX, origY);
+    _canvas.context2D.rotate(image.rotation * pi / 180);
+    _canvas.context2D.translate(-origX, -origY);
+    _canvas.context2D.scale(image.scaleX, image.scaleY);
+    _canvas.context2D.drawImage(image.element, dx, dy);
+    _canvas.context2D.scale(1.0, 1.0);
     _canvas.context2D.restore();
   }
 

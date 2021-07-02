@@ -24,14 +24,6 @@ void SetAutoMidhandle(bool val) {
   Core.dartbbCtx.graphics.setAutoMidhandle(val);
 }
 
-void SetImageMidhandle(Image image, bool val) {
-  image.setMidHandle(val);
-}
-
-void HandleImage(Image image, num x, num y) {
-  image.setHandle(x, y);
-}
-
 bool IsAutoMidhandle() {
   return Core.dartbbCtx.graphics.autoMidhandle;
 }
