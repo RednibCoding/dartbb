@@ -201,7 +201,7 @@ void mainLoop() {
 - [ ] Spritesheet loading
 - [ ] Spritesheed drawing
 - [ ] Spritesheet autodrawing (animating)
-- [ ] Collisions
+- [ ] Collision detection
 - [ ] Load sounds
 - [ ] Play sounds
 - [ ] WebGL renderer
