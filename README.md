@@ -1,6 +1,6 @@
 ![dartbb](https://user-images.githubusercontent.com/28296119/124308891-365ccd80-db6a-11eb-886f-1e669bc9cdbd.png)
 # dartbb
-dartbb (dart**b**litz**b**asic) is a native Dart 2d web framework inspired by the BlitzBasic language.
+dartbb (dart**b**litz**b**asic) is a native Dart 2d web framework inspired by the [BlitzBasic](https://en.wikipedia.org/wiki/Blitz_BASIC) language.
 
 ## Goal
 The goal behind **dartbb** is to provide a minimalistic and easy<b>*</b> to use 2d framework where one can build it's own game/gameengine ontop of.
