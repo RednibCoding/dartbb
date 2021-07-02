@@ -173,6 +173,7 @@ void mainLoop() {
 - Clear screen **(Done)**
 - Setting clear color **(Done)**
 - Autoresizing of canvas when window size changes
+- Setting tformfilter
 - Loading images **(Done)**
 - Drawing images **(Done)**
 - Change pivot point of images **(Done)**
