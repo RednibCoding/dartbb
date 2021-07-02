@@ -1,6 +1,8 @@
 # dartbb
 dartbb (dart**b**litz**b**asic) is a native Dart 2d web framework inspired by the BlitzBasic language.
 
+_Currently this is a web-simple project to make testing easier. Later, when this framework becomes more mature, it will be released as a pub package_
+
 
 ## Demo Video
 
@@ -35,3 +37,27 @@ void mainLoop() {
 ```
 
 ![2021-07-02 16_59_24-dartbb](https://user-images.githubusercontent.com/28296119/124293502-07892c00-db57-11eb-9471-d2995fba06d4.png)
+
+## Progress
+- Create a canvas object for drawing **(Done)**
+- Loading images **(Done)**
+- Drawing images **(Done)**
+- Change pivot point of images **(Done)**
+- Auto changing pivot points of images (animating) **(Done)**
+- Draw text **(Done)**
+- Load fonts **(Done)**
+- Set fonts **(Done)**
+- Mouse down/hit **(Done)**
+- Keyboad key down/hit **(Done)**
+- Mousewheel scolling
+- Touchinput
+- Rotating images **(Done)**
+- Scaling images **(Done)**
+- Auto scrolling/scaling of images (animating) **(Done)**
+- Fps counter **(Done)**
+- Spritesheet loading
+- Spritesheed drawing
+- Spritesheet autodrawing (animating)
+- Load sounds
+- Play sounds
+- WebGL renderer
