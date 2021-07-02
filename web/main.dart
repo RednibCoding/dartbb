@@ -59,6 +59,7 @@ void mainLoop() {
         MouseX() - 50, MouseY() + 80);
   }
 
+  // Reverse rotation on mouse click
   if (mhLeft) {
     rot /= -1;
   }
