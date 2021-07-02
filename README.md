@@ -179,7 +179,7 @@ void mainLoop() {
 - Load fonts **(Done)**
 - Set fonts **(Done)**
 - Mouse down/hit **(Done)**
-- Show/Hide mouse cursor
+- Show/Hide mouse cursor **(Done)**
 - Keyboad key down/hit **(Done)**
 - Mousewheel scolling
 - Touchinput
