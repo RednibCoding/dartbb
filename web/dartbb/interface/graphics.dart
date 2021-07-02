@@ -20,6 +20,22 @@ void SetColor(int r, int g, int b, [double a = 1.0]) {
   Core.dartbbCtx.graphics.setColor(r, g, b, a);
 }
 
+void SetAutoMidhandle(bool val) {
+  Core.dartbbCtx.graphics.setAutoMidhandle(val);
+}
+
+void SetImageMidhandle(Image image, bool val) {
+  image.setMidHandle(val);
+}
+
+void HandleImage(Image image, num x, num y) {
+  image.setHandle(x, y);
+}
+
+bool IsAutoMidhandle() {
+  return Core.dartbbCtx.graphics.autoMidhandle;
+}
+
 int GraphicsWidth() {
   return Core.dartbbCtx.graphics.graphicsWidth;
 }

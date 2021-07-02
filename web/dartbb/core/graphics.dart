@@ -4,11 +4,13 @@ import 'dart:html';
 import '../font.dart';
 import '../image.dart';
 import '../color.dart';
+import 'core.dart';
 
 class Graphics {
   late CanvasElement _canvas;
   late Color _clsColor;
   late Color _color;
+  bool _autoMidhandle = false;
 
   Graphics(int width, int height) {
     _clsColor = Color(0, 0, 0);
@@ -24,6 +26,7 @@ class Graphics {
   int get graphicsWidth => _canvas.width ?? 0;
   int get graphicsHeight => _canvas.height ?? 0;
   CanvasElement get canvas => _canvas;
+  bool get autoMidhandle => _autoMidhandle;
 
   void cls() {
     _canvas.context2D
@@ -45,6 +48,10 @@ class Graphics {
     _color.g = g;
     _color.b = b;
     _color.a = a;
+  }
+
+  void setAutoMidhandle(bool val) {
+    _autoMidhandle = val;
   }
 
   Font loadFont(String path) {
@@ -75,7 +82,15 @@ class Graphics {
   }
 
   void drawImage(Image img, num x, num y) {
-    _canvas.context2D.drawImage(img.element, x, y);
+    var dx = x - img.hndlX;
+    var dy = y - img.hndlY;
+    if (_autoMidhandle || img.midHandle) {
+      dx -= img.element.width! / 2;
+      dy -= img.element.height! / 2;
+    }
+    _canvas.context2D.save();
+    _canvas.context2D.drawImage(img.element, dx, dy);
+    _canvas.context2D.restore();
   }
 
   num imageWidth(Image image) {
