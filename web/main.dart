@@ -106,8 +106,4 @@ void mainLoop() {
   AutoRotateImage(image1, 2);
   DrawImage(image1, GraphicsWidth() / 2,
       GraphicsHeight() / 2 + ImageHeight(image1) / 2);
-
-  // AutoScaleImage(image3, 0.04, 0.02, 0, 1, 1, 1.5, true);
-  // DrawText('Rotation: ${ImageRotation(image1)}', MouseX() - 50, MouseY() + 100);
-  // DrawImage(image3, MouseX(), MouseY());
 }
