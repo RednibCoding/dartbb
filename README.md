@@ -1,3 +1,7 @@
+
+
+
+
 ![dartbb](https://user-images.githubusercontent.com/28296119/124308891-365ccd80-db6a-11eb-886f-1e669bc9cdbd.png)
 # dartbb
 dartbb (dart**b**litz**b**asic) is a native Dart 2d web framework inspired by the [BlitzBasic](https://en.wikipedia.org/wiki/Blitz_BASIC) language.
@@ -13,8 +17,7 @@ _* with easy, we really mean easy. A minimalistc set of functions that gets the 
 ## Demo Video
 
 
-
-https://user-images.githubusercontent.com/28296119/124331512-9fa30780-db8f-11eb-9bdf-b0aafe59db02.mov
+https://user-images.githubusercontent.com/28296119/124332714-5ef8bd80-db92-11eb-9fa5-bad76ffb2964.mov
 
 
 
@@ -106,9 +109,11 @@ void mainLoop() {
   AutoRotateImage(image5, 1);
   DrawImage(image5, anchorX + 300, anchorY + 100);
 
-  AutoRotateImage(image6, 2, 90, 360, true);
+  AutoRotateImage(image6, -2, 0, 90, true);
   DrawImage(image6, anchorX + 400, anchorY + 100);
 
+  AutoScaleImageX(image1, 0.05, 0.5, 1.5, true);
+  AutoScaleImageY(image1, 0.05, 0.8, 1.8, true);
   AutoHandleImageX(image1, 1, -50, 50, true);
   AutoHandleImageY(image1, 2, -40, 40, true);
   AutoRotateImage(image1, 2);
@@ -126,7 +131,7 @@ void mainLoop() {
   // See https://keycode.info for keycodes
   if (KeyDown(KeyCode.SPACE)) {
     var text1 =
-        'Scaled Image size: ${ImageWidth(image1).toString()} | ${ImageHeight(image1).toString()}';
+        'Scaled Image size: ${ImageWidth(image1).toInt().toString()} | ${ImageHeight(image1).toInt().toString()}';
     var text2 =
         'Natural Image size: ${NaturalImageWidth(image1).toString()} | ${NaturalImageHeight(image1).toString()}';
 
@@ -146,6 +151,7 @@ void mainLoop() {
         MouseX() - 50, MouseY() + 80);
   }
 }
+
 
   ```
 </details>
