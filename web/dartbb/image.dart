@@ -123,6 +123,11 @@ class Image {
     var ang = angle;
     if (bounce) {
       ang = ang.abs();
+      if (minAngle > maxAngle) {
+        var tmp = minAngle;
+        minAngle = maxAngle;
+        maxAngle = tmp;
+      }
       if (_rotation > maxAngle) {
         _autoRotateDirectionReversed = true;
       } else if (_rotation < minAngle) {
@@ -138,10 +143,7 @@ class Image {
 
     if (_autoRotateDirectionReversed) {
       ang /= -1;
-      var tmp = minAngle;
-      minAngle = maxAngle;
-      maxAngle = tmp;
-    } else {}
+    }
 
     setRotation(_rotation + ang);
   }
@@ -198,46 +200,4 @@ class Image {
       }
     }
   }
-  // void autoScale(num stepX, num minX, num maxX, num stepY, num minY, num maxY,
-  //     bool bounce) {
-  //   var sx = stepX.abs();
-  //   var sy = stepY.abs();
-
-  //   if (bounce) {
-  //     if (_scaleX > maxX) {
-  //       _autoScaleXDirectionReversed = true;
-  //     }
-  //     if (_scaleY > maxY) {
-  //       _autoScaleYDirectionReversed = true;
-  //     }
-  //     if (_scaleX < minX) {
-  //       _autoScaleXDirectionReversed = false;
-  //     }
-  //     if (_scaleY < minY) {
-  //       _autoScaleYDirectionReversed = false;
-  //     }
-  //     if (_autoScaleXDirectionReversed) {
-  //       sx /= -1;
-  //     }
-  //     if (_autoScaleYDirectionReversed) {
-  //       sy /= -1;
-  //     }
-  //     _scaleX += sx;
-  //     _scaleY += sy;
-  //   } else {
-  //     if (_scaleX > maxX) {
-  //       _scaleX = minX;
-  //     } else if (_scaleX < minX) {
-  //       _scaleX = maxX;
-  //     }
-  //     if (_scaleY > maxY) {
-  //       _scaleY = minY;
-  //     } else if (_scaleY < minY) {
-  //       _scaleY = maxY;
-  //     } else {
-  //       _scaleX += sx;
-  //       _scaleY += sy;
-  //     }
-  //   }
-  // }
 }
