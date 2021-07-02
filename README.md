@@ -196,6 +196,7 @@ void mainLoop() {
 - [x] Scaling images
 - [x] Auto rotating/scaling of images (animating)
 - [x] Fps counter
+- [x] Delta time
 - [ ] Spritesheet loading
 - [ ] Spritesheed drawing
 - [ ] Spritesheet autodrawing (animating)
