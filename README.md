@@ -184,6 +184,7 @@ void mainLoop() {
 - [x] Change pivot point of images
 - [x] Auto changing pivot points of images (animating)
 - [x] Draw text
+- [ ] Draw primitives (line, rect, circle)
 - [x] Setting color (for text and primitives drawing)
 - [x] Load fonts
 - [x] Set fonts
@@ -200,7 +201,7 @@ void mainLoop() {
 - [ ] Spritesheet loading
 - [ ] Spritesheed drawing
 - [ ] Spritesheet autodrawing (animating)
-- [ ] Draw primitives (line, rect, circle)
+- [ ] Collisions
 - [ ] Load sounds
 - [ ] Play sounds
 - [ ] WebGL renderer
