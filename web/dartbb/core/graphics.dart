@@ -105,10 +105,18 @@ class Graphics {
   }
 
   num imageWidth(Image image) {
-    return image.element.width!;
+    return image.element.width! * image.scaleX.abs();
   }
 
   num imageHeight(Image image) {
+    return image.element.height! * image.scaleY.abs();
+  }
+
+  num naturalImageWidth(Image image) {
+    return image.element.width!;
+  }
+
+  num naturalImageHeight(Image image) {
     return image.element.height!;
   }
 
