@@ -189,6 +189,7 @@ void mainLoop() {
 - Spritesheet loading
 - Spritesheed drawing
 - Spritesheet autodrawing (animating)
+- Draw primitives (line, rect circle)
 - Load sounds
 - Play sounds
 - WebGL renderer
