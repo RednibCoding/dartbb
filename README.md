@@ -170,12 +170,16 @@ void mainLoop() {
 
 ## Progress
 - Create a canvas object for drawing **(Done)**
+- Clear screen **(Done)**
+- Setting clear color **(Done)**
 - Autoresizing of canvas when window size changes
+- Setting tformfilter
 - Loading images **(Done)**
 - Drawing images **(Done)**
 - Change pivot point of images **(Done)**
 - Auto changing pivot points of images (animating) **(Done)**
 - Draw text **(Done)**
+- Setting text color **(Done)**
 - Load fonts **(Done)**
 - Set fonts **(Done)**
 - Mouse down/hit **(Done)**
@@ -190,7 +194,7 @@ void mainLoop() {
 - Spritesheet loading
 - Spritesheed drawing
 - Spritesheet autodrawing (animating)
-- Draw primitives (line, rect circle)
+- Draw primitives (line, rect, circle)
 - Load sounds
 - Play sounds
 - WebGL renderer
