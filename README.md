@@ -184,7 +184,7 @@ void mainLoop() {
 - [x] Change pivot point of images
 - [x] Auto changing pivot points of images (animating)
 - [x] Draw text
-- [x] Setting text color
+- [x] Setting color (for text and primitives drawing)
 - [x] Load fonts
 - [x] Set fonts
 - [x] Mouse down/hit
