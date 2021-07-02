@@ -184,7 +184,7 @@ void mainLoop() {
 - Touchinput
 - Rotating images **(Done)**
 - Scaling images **(Done)**
-- Auto scrolling/scaling of images (animating) **(Done)**
+- Auto rotating/scaling of images (animating) **(Done)**
 - Fps counter **(Done)**
 - Spritesheet loading
 - Spritesheed drawing
