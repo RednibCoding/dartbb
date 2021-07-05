@@ -11,11 +11,13 @@ class Graphics {
   late Color _clsColor;
   late Color _color;
   bool _autoMidhandle = false;
+  late bool _autoResize;
 
   Graphics(int width, int height) {
     _clsColor = Color(0, 0, 0);
     _color = Color(255, 255, 255);
     _canvas = _createCanvasElement('canvas', width, height);
+    _autoResize = false;
 
     // tabIndex is needed in order for keyboard events to work.
     // Without a tabIndex, the canvas element cannot be focused
@@ -27,7 +29,12 @@ class Graphics {
   int get graphicsWidth => _canvas.width ?? 0;
   int get graphicsHeight => _canvas.height ?? 0;
   CanvasElement get canvas => _canvas;
+  bool get autoResize => _autoResize;
   bool get autoMidhandle => _autoMidhandle;
+
+  void setAutoResize(bool val) {
+    _autoResize = val;
+  }
 
   void cls() {
     _canvas.context2D
@@ -129,34 +136,72 @@ class Graphics {
     return await image.onLoad.first.then((value) => Image(image));
   }
 
-  void drawImage(Image image, num x, num y) {
+  Future<Image> loadAnimImage(String path, num cellWidth, num cellHeight,
+      num startCell, num cellCount) async {
+    var image = ImageElement(src: path);
+    return await image.onLoad.first.then(
+        (value) => Image(image, cellWidth, cellHeight, startCell, cellCount));
+  }
+
+  void drawImage(Image image, num x, num y, num frame) {
     var origX = x;
     var origY = y;
     x /= image.scaleX;
     y /= image.scaleY;
+    if (frame > image.frame.amount) {
+      frame = image.frame.start;
+    }
 
+    var tilePosX = image.getTilePosX(frame.toInt() - 1);
+    var tilePosY = image.getTilePosY(frame.toInt() - 1);
     var dx = x - image.hndlX;
     var dy = y - image.hndlY;
     if (_autoMidhandle || image.midHandle) {
-      dx -= image.element.width! / 2;
-      dy -= image.element.height! / 2;
+      dx -= image.frame.width / 2;
+      dy -= image.frame.height / 2;
     }
     _canvas.context2D.save();
+    _canvas.context2D.globalAlpha = image.alpha;
     _canvas.context2D.translate(origX, origY);
     _canvas.context2D.rotate(image.rotation * pi / 180);
     _canvas.context2D.translate(-origX, -origY);
     _canvas.context2D.scale(image.scaleX, image.scaleY);
-    _canvas.context2D.drawImage(image.element, dx, dy);
+    _canvas.context2D.drawImageScaledFromSource(
+        image.element,
+        tilePosX,
+        tilePosY,
+        image.frame.width,
+        image.frame.height,
+        dx,
+        dy,
+        image.frame.width,
+        image.frame.height);
     _canvas.context2D.scale(1.0, 1.0);
     _canvas.context2D.restore();
   }
 
+  void drawAnimImage(
+      Image image, num x, num y, num frameFrom, num frameTo, num delay) {
+    if (image.frame.current < frameFrom) {
+      image.frame.current = frameFrom;
+    }
+    image.elapsedAnimationDelay++;
+    if (image.elapsedAnimationDelay >= delay) {
+      image.elapsedAnimationDelay = 0.0;
+      image.frame.current++;
+      if (image.frame.current > frameTo) {
+        image.frame.current = frameFrom;
+      }
+    }
+    drawImage(image, x, y, image.frame.current);
+  }
+
   num imageWidth(Image image) {
-    return image.element.width! * image.scaleX.abs();
+    return image.frame.width * image.scaleX.abs();
   }
 
   num imageHeight(Image image) {
-    return image.element.height! * image.scaleY.abs();
+    return image.frame.height * image.scaleY.abs();
   }
 
   num naturalImageWidth(Image image) {
@@ -186,6 +231,15 @@ class Graphics {
     var actualHeight =
         metrics.actualBoundingBoxAscent! + metrics.actualBoundingBoxDescent!;
     return actualHeight;
+  }
+
+  bool rectsOverlap(
+      num x1, num y1, num w1, num h1, num x2, num y2, num w2, num h2) {
+    if ((x1 + w1 >= x2 && x1 <= x2 + w2) &&
+        ((y1 + h1 >= y2 && y1 <= y2 + h2))) {
+      return true;
+    }
+    return false;
   }
 
   CanvasElement _createCanvasElement(String id, int width, int height,

@@ -8,6 +8,10 @@ void RunGame() {
   Core.dartbbCtx.run();
 }
 
+void SetAutoResize(bool val) {
+  Core.dartbbCtx.graphics.setAutoResize(val);
+}
+
 void Cls() {
   Core.dartbbCtx.graphics.cls();
 }
@@ -52,4 +56,9 @@ void DrawRect(num x, num y, num width, num height,
 void DrawCircle(num centerX, num centerY, num radius,
     [bool fill = true, num thickness = 1]) {
   Core.dartbbCtx.graphics.circle(centerX, centerY, radius, fill, thickness);
+}
+
+bool RectsOverlap(
+    num x1, num y1, num w1, num h1, num x2, num y2, num w2, num h2) {
+  return Core.dartbbCtx.graphics.rectsOverlap(x1, y1, w1, h1, x2, y2, w2, h2);
 }

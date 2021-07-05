@@ -2,6 +2,7 @@ library dartbb.core;
 
 import 'dart:html';
 import '../time.dart';
+import 'audio.dart';
 import 'graphics.dart';
 import 'keyboard.dart';
 import 'mouse.dart';
@@ -14,14 +15,17 @@ class Core {
   int _elapsedTime = 0;
   int _fps = 0;
   int _fpsCounter = 0;
+  bool _isFirstCycle = true;
   late Function _mainLoop;
   late Graphics graphics;
   late Mouse mouse;
   late Keyboard keyboard;
+  late Audio audio;
 
   int get fps => _fps;
   int get millisecs => _time.milliSecs();
   int get deltaTime => _elapsedTime;
+  bool get isFirstCycle => _isFirstCycle;
 
   Core({
     required int width,
@@ -32,9 +36,19 @@ class Core {
     graphics = Graphics(width, height);
     mouse = Mouse(this);
     keyboard = Keyboard(this);
+    audio = Audio();
   }
 
   void run() async {
+    _isFirstCycle = false;
+    if (graphics.autoResize) {
+      if (graphics.canvas.width != window.innerWidth) {
+        graphics.canvas.width = window.innerWidth;
+      }
+      if (graphics.canvas.height != window.innerHeight) {
+        graphics.canvas.height = window.innerHeight;
+      }
+    }
     _render(await window.animationFrame);
     _fpsCounter++;
     var ms = _time.milliSecs();

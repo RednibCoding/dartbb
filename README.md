@@ -195,20 +195,21 @@ void mainLoop() {
 - [x] Create a canvas object for drawing
 - [x] Clear screen
 - [x] Setting clear color
-- [ ] Autoresizing of canvas when window size changes
+- [x] Autoresizing of canvas when window size changes
 - [x] Setting TFormFilter (smoothing of images)
 - [x] Loading images
 - [x] Drawing images
 - [x] Rotating images
 - [x] Scaling images
+- [x] Flip images
 - [x] Auto rotating/scaling of images (animating)
 - [x] Change pivot point of images
 - [x] Auto changing pivot points of images (animating)
-- [ ] Change alpha of images
-- [ ] Autochanging alpha of images (animating)
-- [ ] Spritesheet loading
-- [ ] Spritesheed drawing
-- [ ] Spritesheet autodrawing (animating)
+- [x] Change alpha of images
+- [x] Autochanging alpha of images (animating)
+- [x] Spritesheet loading
+- [x] Spritesheed drawing
+- [x] Spritesheet autodrawing (animating)
 - [x] Draw text
 - [x] Draw primitives (line, rect, circle)
 - [x] Setting color (for text and primitives drawing)
@@ -217,13 +218,12 @@ void mainLoop() {
 - [x] Mouse down/hit
 - [x] Show/Hide mouse cursor
 - [x] Keyboad key down/hit
-- [ ] Mousewheel scolling
+- [x] Mousewheel scolling
 - [ ] Touchinput
 - [x] Fps counter
 - [x] Delta time
-- [ ] Collision detection
-- [ ] Load sounds
-- [ ] Play sounds
-- [ ] WebGL renderer
+- [x] Collision detection
+- [x] Load sounds
+- [x] Play sounds
 - [ ] Documentation
 

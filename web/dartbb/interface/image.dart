@@ -4,6 +4,12 @@ Future<Image> LoadImage(String path) async {
   return await Core.dartbbCtx.graphics.loadImage(path);
 }
 
+Future<Image> LoadAnimImage(String path, num cellWidth, num cellHeight,
+    num startCell, num cellCount) async {
+  return await Core.dartbbCtx.graphics
+      .loadAnimImage(path, cellWidth, cellHeight, startCell, cellCount);
+}
+
 Image CopyImage(Image image) {
   return image.copy();
 }
@@ -12,8 +18,25 @@ Image CloneImage(Image image) {
   return image.clone();
 }
 
-void DrawImage(Image image, num x, num y) {
-  Core.dartbbCtx.graphics.drawImage(image, x, y);
+void DrawImage(Image image, num x, num y, [num frame = 1]) {
+  Core.dartbbCtx.graphics.drawImage(image, x, y, frame);
+}
+
+void DrawAnimImage(
+    Image image, num x, num y, num frameFrom, num frameTo, num delay) {
+  Core.dartbbCtx.graphics.drawAnimImage(image, x, y, frameFrom, frameTo, delay);
+}
+
+void FlipImageX(Image image) {
+  image.flipX();
+}
+
+void FlipImageY(Image image) {
+  image.flipY();
+}
+
+void SetImageAlpha(Image image, num alpha) {
+  image.setAlpha(alpha);
 }
 
 num ImageWidth(Image image) {
@@ -70,15 +93,32 @@ void AutoScaleImageX(Image image, num step, num min, num max,
 
 void AutoScaleImageY(Image image, num step, num min, num max,
     [bool bounce = false]) {
-  image.autoScaleY(step, min, max, bounce);
+  image.autoScaleY(
+    step,
+    min,
+    max,
+    bounce,
+  );
 }
 
-// void AutoScaleImage(
-//     Image image, num stepX, num minX, num maxX, num stepY, num minY, num maxY,
-//     [bool bounce = false]) {
-//   image.autoScale(stepX, minX, maxX, stepY, minY, maxY, bounce);
-// }
+void AutoAlphaImage(Image image, num step, num min, num max,
+    [bool bounce = false]) {
+  image.autoAlpha(step, min, max, bounce);
+}
 
 num ImageRotation(Image image) {
   return image.rotation;
+}
+
+bool ImageRectsOverlap(Image image1, num image1x, num image1y, Image image2,
+    num image2x, num image2y) {
+  return Core.dartbbCtx.graphics.rectsOverlap(
+      image1x,
+      image1y,
+      image1.frame.width,
+      image1.frame.height,
+      image2x,
+      image2y,
+      image2.frame.width,
+      image2.frame.height);
 }

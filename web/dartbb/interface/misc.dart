@@ -19,3 +19,7 @@ String MillisecsString() {
 int DeltaTime() {
   return Core.dartbbCtx.deltaTime;
 }
+
+bool IsFirstCycle() {
+  return Core.dartbbCtx.isFirstCycle;
+}

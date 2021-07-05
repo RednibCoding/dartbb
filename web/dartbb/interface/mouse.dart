@@ -8,12 +8,20 @@ num MouseY() {
   return Core.dartbbCtx.mouse.y;
 }
 
+num MouseZ() {
+  return Core.dartbbCtx.mouse.z;
+}
+
 num MouseXSpeed() {
   return Core.dartbbCtx.mouse.speedX();
 }
 
 num MouseYSpeed() {
   return Core.dartbbCtx.mouse.speedY();
+}
+
+num MouseZSpeed() {
+  return Core.dartbbCtx.mouse.speedZ();
 }
 
 bool MouseDown(int key) {

@@ -8,6 +8,7 @@ class Mouse {
   late Core ctx;
   num x = 0;
   num y = 0;
+  num z = 0;
   num xSpeed = 0;
   num ySpeed = 0;
   num zSpeed = 0;
@@ -19,6 +20,7 @@ class Mouse {
     this.ctx.graphics.canvas.onMouseMove.listen(_saveMousePos);
     this.ctx.graphics.canvas.onMouseDown.listen(_saveMouseDown);
     this.ctx.graphics.canvas.onMouseUp.listen(_saveMouseUp);
+    this.ctx.graphics.canvas.onMouseWheel.listen(_saveMouseWheel);
     this.ctx.graphics.canvas.onTouchMove.listen(_saveTouchPos);
     this.ctx.graphics.canvas.onTouchStart.listen(_saveTouchDown);
     this.ctx.graphics.canvas.onTouchEnd.listen(_saveTouchUp);
@@ -41,6 +43,14 @@ class Mouse {
 
   void _saveMouseUp(MouseEvent e) {
     keys[e.button] = false;
+  }
+
+  void _saveMouseWheel(WheelEvent e) {
+    if (e.deltaY.isNegative) {
+      z--;
+    } else {
+      z++;
+    }
   }
 
   void _saveTouchPos(TouchEvent e) {
@@ -74,6 +84,12 @@ class Mouse {
     return speed;
   }
 
+  num speedZ() {
+    var d = z - zSpeed;
+    zSpeed = z;
+    return d;
+  }
+
   bool down(int key) {
     return keys[key];
   }
@@ -88,6 +104,7 @@ class Mouse {
     keys.forEach((k) {
       k = false;
     });
+    z = 0;
   }
 
   void hide() {
